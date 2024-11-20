@@ -1,61 +1,270 @@
-<nav class="max-w-[1280px] mx-auto mt-4 capitalize">
-  <div class="flex justify-between items-center">
+---
+import SocialLinks from "./SocialLinks.astro";
+import SearchBox from "./SearchBox.astro"
+
+// Navigation Component
+const navItems = [
+  {
+    href: "learn",
+    text: "learn",
+    dropdown: [
+      { title: "Fundamentals", description: "Basic concepts and principles" },
+      {
+        title: "Advanced Tutorials",
+        description: "In-depth learning resources",
+      },
+      {
+        title: "Community Guides",
+        description: "User-created learning materials",
+      },
+    ],
+  },
+  {
+    href: "buildWithFlare",
+    text: "build",
+    dropdown: [
+      {
+        title: "Developer Tools",
+        description: "SDKs and development resources",
+      },
+      { title: "API Documentation", description: "Comprehensive API guides" },
+      { title: "Sample Projects", description: "Example implementations" },
+    ],
+  },
+  {
+    href: "usage",
+    text: "use",
+    dropdown: [
+      { title: "Getting Started", description: "Quick start guide" },
+      { title: "Use Cases", description: "Real-world application scenarios" },
+      {
+        title: "Integration Guides",
+        description: "How to implement in your project",
+      },
+    ],
+  },
+  {
+    href: "operators",
+    text: "operate",
+    dropdown: [
+      { title: "Node Setup", description: "Operational node configuration" },
+      { title: "Maintenance", description: "Best practices for system upkeep" },
+      {
+        title: "Monitoring Tools",
+        description: "Performance tracking solutions",
+      },
+    ],
+  },
+  {
+    href: "connection",
+    text: "connect",
+    dropdown: [
+      {
+        title: "Network Connections",
+        description: "Establishing network links",
+      },
+      {
+        title: "Community Channels",
+        description: "Join our discussion platforms",
+      },
+      {
+        title: "Support Resources",
+        description: "Get help and connect with experts",
+      },
+    ],
+  },
+  {
+    href: "news",
+    text: "news",
+    dropdown: [
+      { title: "Latest Updates", description: "Recent developments" },
+      { title: "Announcements", description: "Official communication" },
+      { title: "Blog Posts", description: "In-depth insights" },
+    ],
+  },
+];
+---
+
+<nav class="max-w-[1280px] mx-auto mt-4 px-4 capitalize">
+  <div class="flex justify-between items-center relative">
+    <!-- Logo -->
     <img
-      sizes="(max-width: 600px) 50vw, 
-         (max-width: 1200px) 25vw, 
-         15vw"
       src="https://flare.network/wp-content/uploads/Artboard-1-1.svg"
       alt="logo"
-      style="max-width: 99px; height: auto;"
+      class="max-w-[99px] h-auto"
     />
-    <!-- nav-menu -->
-    <div class="flex items-center justify-between w-[63%]">
-      <ul
-        class="flex items-center space-x-6 text-base]"
+
+    <!-- Mobile Menu Toggle -->
+    <button
+      id="mobile-menu-toggle"
+      class="md:hidden z-50"
+      aria-label="Toggle mobile menu"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-menu"
       >
-        <li>learn</li>
-        <li>build</li>
-        <li>use</li>
-        <li>operate</li>
-        <li>connect</li>
-        <li>news</li>
+        <line x1="4" x2="20" y1="12" y2="12"></line>
+        <line x1="4" x2="20" y1="6" y2="6"></line>
+        <line x1="4" x2="20" y1="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Desktop Navigation -->
+    <div class="hidden md:flex items-center justify-between w-[63%]">
+      <ul class="flex items-center space-x-6 text-base relative">
+        {
+          navItems.map((item) => (
+            <li class="relative group">
+              <a
+                href={item.href}
+                class="hover:text-blue-600 group-hover:text-blue-600"
+              >
+                {item.text}
+              </a>
+
+              {item.dropdown && (
+                <div class="absolute top-full left-0 mt-4 hidden group-hover:block z-50">
+                  <div class="w-[250px] bg-white shadow-lg rounded-lg border border-gray-100 p-4">
+                    {item.dropdown.map((dropdownItem) => (
+                      <a href="#" class="block py-2 hover:bg-gray-50 rounded">
+                        <div class="font-semibold text-base">
+                          {dropdownItem.title}
+                        </div>
+                        <p class="text-sm text-gray-500">
+                          {dropdownItem.description}
+                        </p>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </li>
+          ))
+        }
       </ul>
 
       <div>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-search"
-          ><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"
-          ></path></svg
-        >
+        <SearchBox />
       </div>
 
       <button
-        class="flex items-center justify-center space-x-4 border border-black rounded-full px-4 py-3"
+        class="hidden mdl:flex items-center justify-center space-x-4 capitalize border border-black rounded-full px-6 py-3 hover:bg-gray-100"
       >
         developer hub
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="16"
+          height="16"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
+          stroke-width="1"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="lucide lucide-move-up-right"
-          ><path d="M13 5H19V11"></path><path d="M19 5L5 19"></path></svg
+          class="lucide lucide-move-up-right ml-2"
         >
+          <path d="M13 5H19V11"></path>
+          <path d="M19 5L5 19"></path>
+        </svg>
       </button>
     </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div
+      id="mobile-menu"
+      class="fixed inset-0 bg-white z-40 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden"
+    >
+      <div class="container mx-auto px-4 py-8">
+        <ul class="space-y-4 text-center mt-[100px]">
+          {
+            navItems.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="block text-xl py-3 hover:bg-gray-100"
+                >
+                  {item.text}
+                </a>
+              </li>
+            ))
+          }
+          <li class="mt-6">
+            <button
+              class="w-full capitalize border bg-black text-white rounded-full px-6 py-3 hover:bg-[#E62058] flex items-center justify-center"
+            >
+              developer hub
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-move-up-right ml-2"
+              >
+                <path d="M13 5H19V11"></path>
+                <path d="M19 5L5 19"></path>
+              </svg>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
+  <SocialLinks />
 </nav>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    mobileMenuToggle.addEventListener("click", () => {
+      mobileMenu.classList.toggle("translate-x-full");
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener("click", (event) => {
+      if (
+        !mobileMenu.contains(event.target as Node) &&
+        !mobileMenuToggle.contains(event.target as Node)
+      ) {
+        mobileMenu.classList.add("translate-x-full");
+      }
+    });
+  });
+</script>
+
+<style>
+  /* Prevents body scroll when mobile menu is open */
+  .menu-open {
+    overflow: hidden;
+  }
+
+  .group:hover > a::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-right: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+    rotate: 45deg;
+    z-index: 50;
+  }
+</style>
