@@ -1,81 +1,161 @@
 ---
+// Social Links Component
 interface SocialLink {
   name: string;
-  url: string;
+  href: string;
   icon: string;
   color: string;
 }
 
-const socialLinks: SocialLink[] = [
+interface Props {
+  layout?: "horizontal" | "vertical";
+  size?: "small" | "medium" | "large";
+  theme?: "default" | "colored" | "outlined";
+  className?: string;
+}
+
+const {
+  layout = "horizontal",
+  size = "medium",
+  theme = "default",
+  className = "",
+} = Astro.props;
+
+const socialNetworks: SocialLink[] = [
   {
     name: "Twitter",
-    url: "https://twitter.com/flare_network",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-      <path d="M18.901 1.153h3.68l-8.04 9.557L24 22.846h-7.406l-5.8-7.584-6.638 7.584H1.474l8.659-9.876L0 1.154h7.594l5.243 6.932z"/>
+    href: "https://twitter.com/flarenetwork",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 5.437 12 7v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.038 1.517 3.658-1.084 6.681-3.979 7.962-8.521 0 0 1-1 1.984-2.75-.013.07-.014.14-.016.22z"/>
     </svg>`,
-    color: "text-[#1DA1F2]",
-  },
-  {
-    name: "Discord",
-    url: "https://discord.gg/flare",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-      <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3765-.4447.8667-.6083 1.2562-1.8653-.2796-3.7145-.2796-5.5308 0-.1636-.3984-.4046-.8806-.6167-1.2562a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8851 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8734-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1061 13.9689 13.9689 0 01-1.996-.9547.077.077 0 01-.0076-.1277c.134-.1003.268-.2047.3958-.3097a.0743.0743 0 01.0766-.0105c4.1893 1.9117 8.7294 1.9117 12.8512 0a.0739.0739 0 01.0765.0105c.1279.1051.2626.2094.3958.3097a.077.077 0 01-.0066.1276 13.001 13.001 0 01-1.997.9548.0765.0765 0 00-.0407.1061c.3604.6899.7722 1.3547 1.226 1.9942a.0765.0765 0 00.0842.0276c1.9649-.6067 3.9534-1.522 6.0062-3.0294a.077.077 0 00.0313-.0561c.4902-5.1734-.8241-9.6468-3.4791-13.6179a.061.061 0 00-.0312-.0277z"/>
-    </svg>`,
-    color: "text-[#5865F2]",
+    color: "#1DA1F2",
   },
   {
     name: "Telegram",
-    url: "https://t.me/flare_network",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-      <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.460-1.9-.907-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.257-2.977 3.315-3.235.007-.033.014-.162-.061-.23s-.189-.042-.272-.025c-.115.025-1.907 1.211-5.378 3.582-.509.35-.967.521-1.382.505-.454-.016-1.327-.256-1.977-.472-.797-.259-1.429-.395-1.373-.832.028-.227.341-.459.94-.696 3.701-1.615 6.165-2.694 7.389-3.236 3.528-1.471 4.255-1.725 4.734-1.733z"/>
+    href: "https://t.me/flare_network",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15.268 12.837L10.829 9.83c-.317-.211-.742.04-.742.427v4.5c0 .387.425.638.742.427l4.439-3.007a.605.605 0 000-.94z"/>
+      <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
     </svg>`,
-    color: "text-[#0088cc]",
+    color: "#0088cc",
+  },
+  {
+    name: "Discord",
+    href: "https://discord.gg/flare",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10.165 5.811C10.687 5.533 11.342 5.62 11.8 6c.535.382.806 1.061.7 1.726-.138.86-.866 1.545-1.733 1.45-.867-.094-1.451-.987-1.214-1.836.121-.432.399-.768.612-1.029z"/>
+      <path d="M14.44 8.81c-.256.474-.762.709-1.255.59-.635-.156-1.057-.75-.974-1.385.083-.636.74-1.089 1.382-.979.687.114 1.11.812.847 1.774z"/>
+      <path d="M18.996 12.495v4.285a3.65 3.65 0 0 1-3.65 3.65H8.654a3.65 3.65 0 0 1-3.65-3.65v-8.09a3.65 3.65 0 0 1 3.65-3.65h6.692a3.65 3.65 0 0 1 3.65 3.65v.785"/>
+      <path d="M8.785 16.524l.831-.832a1.352 1.352 0 0 1 1.91 0l1.589 1.589a1.352 1.352 0 0 0 1.91 0l1.394-1.394"/>
+    </svg>`,
+    color: "#5865F2",
   },
   {
     name: "GitHub",
-    url: "https://github.com/flare-foundation",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+    href: "https://github.com/flare-foundation",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7-.36.31-.63.77-.83 1.27-.1.31-.13.66-.13 1v3.87"/>
     </svg>`,
-    color: "text-[#333]",
+    color: "#333",
   },
   {
     name: "LinkedIn",
-    url: "https://www.linkedin.com/company/flare-network",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.784 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+    href: "https://www.linkedin.com/company/flare-networks",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+      <rect x="2" y="9" width="4" height="12"/>
+      <circle cx="4" cy="4" r="2"/>
     </svg>`,
-    color: "text-[#0077B5]",
+    color: "#0077B5",
   },
   {
     name: "YouTube",
-    url: "https://www.youtube.com/c/FlareNetwork",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-      <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.246 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+    href: "https://www.youtube.com/channel/flare",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 8v8l5-4z"/>
+      <rect x="2" y="6" width="20" height="12" rx="2"/>
     </svg>`,
-    color: "text-[#FF0000]",
+    color: "#FF0000",
   },
   {
     name: "Medium",
-    url: "https://medium.com/flare-network",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-      <path d="M0 0v24h24V0H0zm19.938 5.686L18.651 6.9a.376.376 0 0 0-.143.362v9.067a.376.376 0 0 0 .143.361l1.257 1.213v.271h-6.322v-.271l1.302-1.265c.128-.128.128-.165.128-.361V8.692l-3.62 9.211h-.49L6.69 8.691v6.16a.851.851 0 0 0 .233.707l1.694 2.054v.271H3.691v-.271l1.694-2.053a.82.82 0 0 0 .233-.707V7.418a.624.624 0 0 0-.203-.527L3.876 5.686V5.415h4.665l3.609 7.904 3.176-7.904h4.445v.271z"/>
+    href: "https://medium.com/flare-network",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+      <polyline points="22,6 12,13 2,6"/>
     </svg>`,
-    color: "text-[#000000]",
+    color: "#000000",
   },
   {
     name: "Reddit",
-    url: "https://www.reddit.com/r/FlareNetwork",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-      <path d="M14.238 15.348c.085.084.085.221 0 .306-.465.462-1.194.687-2.231.687l-.008-.002-.008.002c-1.036 0-1.766-.225-2.231-.688-.085-.084-.085-.221 0-.305.084-.084.222-.084.307 0 .379.377 1.008.561 1.924.561l.008.002.008-.002c.915 0 1.544-.184 1.924-.561.085-.084.223-.084.307 0zm-3.44-2.439c0-.507-.414-.919-.922-.919-.509 0-.923.412-.923.919 0 .506.414.918.923.918.508 0 .922-.412.922-.918zm4.316 0c0-.507-.414-.919-.922-.919-.509 0-.923.412-.923.919 0 .506.414.918.923.918.508 0 .922-.412.922-.918zm4.672-5.598c-.363 0-.689.187-.861.467-1.342-.932-3.567-1.747-6.518-1.829l1.245-3.019 3.215.985c0 .968.789 1.758 1.758 1.758 1.049 0 1.907-.858 1.907-1.907S20.124 2 19.075 2c-.787 0-1.46.477-1.726 1.14l-3.546-1.086a.693.693 0 0 0-.532.068.69.69 0 0 0-.276.447l-1.371 4.455c-2.925.094-5.134.898-6.523 1.828a1.034 1.034 0 0 0-.875-.477c-1.049 0-1.907.858-1.907 1.907 0 .772.463 1.44 1.123 1.747.043.566.246 1.631.769 2.473.586.962 1.518 1.623 2.773 1.984 1.454.4 2.816.187 4.035-.551a6.696 6.696 0 0 0 3.327 1.009c2.05 0 3.855-1.115 4.911-2.805.524-.842.763-1.908.8-2.473.66-.307 1.123-.975 1.123-1.747 0-1.049-.858-1.907-1.907-1.907zm-11.512 0c.509 0 .923.412.923.918 0 .507-.414.919-.923.919-.508 0-.922-.412-.922-.919 0-.506.414-.918.922-.918zm6.009 3.012c-.076.023-.154.044-.233.062v.001c.008.02.016.039.024.059.161-.024.322-.041.481-.068-.091-.018-.182-.038-.272-.054zm-5.505-5.968c0 .558.453 1.011 1.011 1.011.558 0 1.011-.453 1.011-1.011 0-.558-.453-1.011-1.011-1.011-.558 0-1.011.453-1.011 1.011z"/>
+    href: "https://www.reddit.com/r/flare",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 12c.5.5 1.234.5 1.5 0l2.5-3h1.5c1 0 1.5.5 1.5 1.5V15c0 1.5-1 1.5-1.5 1.5h-10C5 16.5 5 15 5 15V10.5C5 9.5 5.5 9 6.5 9H8l2.5 3c.266.5 1 .5 1.5 0z"/>
+      <circle cx="12" cy="8" r="1"/>
     </svg>`,
-    color: "text-[#FF4500]",
+    color: "#FF4500",
   },
 ];
 
-interface Props {
-  variant?: "default" | "circular" | "outlined";
-  size?: "sm" | "md" | "lg";
-  alignment?: "horizontal" | "vertical";
-}
+const sizeClasses = {
+  small: "w-5 h-5",
+  medium: "w-6 h-6",
+  large: "w-8 h-8",
+};
+
+const layoutClasses = {
+  horizontal: "flex-row space-x-3 space-y-0",
+  vertical: "flex-col space-y-3 space-x-0",
+};
+
+const themeStyles = {
+  default: "text-gray-600 hover:text-gray-800",
+  colored: "hover:scale-110 transition-transform",
+  outlined: "border border-gray-200 rounded-full p-2 hover:bg-gray-50",
+};
 ---
+
+<div
+  class={`flex justify-between mx-6 items-center ${layoutClasses[layout]} ${themeStyles[theme]} ${className}`}
+>
+  {
+    socialNetworks.map((network) => (
+      <a
+        href={network.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`${network.name} profile`}
+        class="social-link"
+        style={theme === "colored" ? `color: ${network.color}` : ""}
+      >
+        <Fragment set:html={network.icon} />
+      </a>
+    ))
+  }
+</div>
+
+<style define:vars={{ size }}>
+  .social-link {
+    display: inline-block;
+    width: var(--size, 24px);
+    height: var(--size, 24px);
+    transition: all 0.3s ease;
+  }
+
+  .social-link:hover {
+    opacity: 0.8;
+  }
+</style>
+
+<script>
+  // Optional interactivity script
+  document.querySelectorAll(".social-link").forEach((link) => {
+    link.addEventListener("mouseenter", (e) => {
+      (e.currentTarget as HTMLElement).style.transform = "scale(1.1)";
+    });
+
+    link.addEventListener("mouseleave", (e) => {
+      (e.currentTarget as HTMLElement).style.transform = "scale(1)";
+    });
+  });
+</script>

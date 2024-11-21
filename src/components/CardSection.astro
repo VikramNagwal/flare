@@ -1,0 +1,61 @@
+---
+const data = [
+  {
+    title: "FTSO",
+    subTitle: "Decentralized prices",
+    icon: "https://flare.network/wp-content/uploads/ftso-4-1.svg",
+    description:
+      "Offers a decentralized price feed for the Flare Network. It is a decentralized network of agents that provide price data to the Flare Network.",
+  },
+  {
+    title: "Data Connector",
+    subTitle: "Trustless data proofs",
+    icon: "https://flare.network/wp-content/uploads/state-connector-2.svg",
+    description:
+      "Enables information from external sources to be used in smart contracts on the Flare Network. It is a trustless data proof system.",
+  },
+];
+---
+
+<section class="my-[100px] md:my-[180px]">
+  <div class="my-3 p-2">
+    <h1
+      class="text-2xl text-center md:text-[46px] font-monteserrat font-medium mdl:text-4xl text-nowrap"
+    >
+      The blockchain for data
+    </h1>
+    <p class="text-[16px] md:text-[25px] text-[#9B9B9B] text-center mt-3">
+      Flare is an EVM smart contract platform with two enshrined data
+      acquisition protocols.
+    </p>
+
+    <div
+      class="flex flex-col justify-center md:flex-row space-y-8 md:space-y-0 mt-6 md:mt-8 mx-auto p-2"
+    >
+      {
+        data.map((items) => (
+          <div class="px-5 py-3 mx-4 relative flex flex-col md:flex-row max-w-[420px] h-[480px] font-monteserrat rounded-3xl bg-black text-white">
+            <div class="flex flex-col items-center">
+              <img
+                src={items.icon}
+                alt={items.title}
+                class="w-32 h-32 mt-[30px]"
+              />
+              <h2 class="text-2xl mt-3 font-medium">{items.title}</h2>
+              <p class="text-xl mt-1 font-medium text-[#9B9B9B]">
+                {items.subTitle}
+              </p>
+              <p class="px-4 text-center my-3 text-[#9B9B9B]">
+                {items.description}
+              </p>
+
+              <button class="absolute bottom-6 border border-white rounded-full py-3 w-[80%] mx-auto px-4">
+                Learn More
+              </button>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
