@@ -1,0 +1,71 @@
+---
+const feature = [
+  {
+    title: "decentralized bridging",
+    description: "trustlessly access data from other chains and the internet",
+    icon: "https://flare.network/wp-content/uploads/Bridging-1-1.svg",
+  },
+  {
+    title: "state acquisition",
+    description: "securely access data from other chains and the internet",
+    icon: "https://flare.network/wp-content/uploads/state_aquisition-1-1.svg",
+  },
+  {
+    title: "web2 connectivity",
+    description: "trustlessly trigger actions on web2 services",
+    icon: "https://flare.network/wp-content/uploads/web2_connectivity-1.svg",
+  },
+  {
+    title: "Enshrined oracles",
+    description: "access all the data you need from the internet",
+    icon: "https://flare.network/wp-content/uploads/data_feeds-1.svg",
+  },
+  {
+    title: "data access for free",
+    description: "build on flare with broad range",
+    icon: "https://flare.network/wp-content/uploads/scalable_smart_contracts-1-1.svg",
+  },
+];
+---
+
+<section class="font-monteserrat my-6 md:mt-[140px]">
+  <div>
+    <h1 class="text-center pb-3 my-4 text-2xl md:text-4xl font-medium">
+      Expanding the utility of blockchain
+    </h1>
+    <div
+      class="grid grid-cols-2 text-wrap md:grid-cols-5 gap-2 md:gap-4 mt-4 max-w-[1280px] mx-auto px-3 py-4"
+    >
+      {
+        feature.map((items) => (
+          <div class="p-4 md:mx-2 my-4 mx-auto max-w-[200px] text-center">
+            <img
+              src="https://flare.network/wp-content/uploads/scalable_smart_contracts-1-1.svg"
+              alt={items.title}
+              class="mx-auto mb-4"
+            />
+            <h2 class="text-xl font-medium pb-3 mt-4 md:mt-6">{items.title}</h2>
+            <p class="text-sm text-[#9B9B9B] my-2">{items.description}</p>
+          </div>
+        ))
+      }
+    </div>
+    <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-x-6 md:space-y-0 fonr-medium">
+      <button
+        class="border border-black hover:text-[#E62058] hover:border-[#E62058] duration-200 rounded-full w-[180px] mt-4 sm:mt-0 px-3 py-3 cursor-pointer"
+      >
+        Intro the flare
+      </button>
+      <button
+        class="border bg-[#E62058] text-white rounded-full w-[180px] mt-4 sm:mt-0 px-3 py-3 cursor-pointer"
+      >
+        Start building
+      </button>
+      <button
+        class="border border-black hover:text-[#E62058] hover:border-[#E62058] duration-200 rounded-full w-[180px] mt-4 sm:mt-0 px-3 py-3 cursor-pointer"
+      >
+        Developer docs
+      </button>
+    </div>
+  </div>
+</section>

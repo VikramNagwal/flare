@@ -1,0 +1,25 @@
+---
+
+---
+
+<section class="font-monteserrat my-[140px]">
+    <div>
+        <h1 class="font-medium text-4xl text-center">Latest Flare News</h1>
+        <div class="flex flex-col md:flex-row justify-center items-center max-w-[1280px] mx-auto">
+            {
+                Array.from({length: 3}, (_, i) => i + 1).map((items) => (
+                    <div class="flex flex-col space-y-6 md:space-y-0 md:space-x-8 mt-[40px]">
+                        <div class="w-[350px] h-[200px] mx-auto my-4 bg-[#9B9B9B] rounded-md"/>
+                        <div class="mt-[20px] mb-3">
+                            <h2 class="text-start font-medium text-xl pb-3 mt-3">Flare Network Launches Beta</h2>
+                            <p class="text-sm text-gray-500 text-start">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis facere quos, reiciendis nam quasi, aspernatur veritatis, dolorum excepturi fugit quisquam ducimus at ab necessitatibus iure dicta atque animi asperiores pariatur?</p>
+                        </div>
+                        <div class="flex items-center mt-6 text-[#E62058] bg-[#E62058]/10 rounded-full w-32 py-[2px]">
+                            <p class="text-center text-sm mx-auto">Flare update</p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

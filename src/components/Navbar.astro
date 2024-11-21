@@ -1,6 +1,6 @@
 ---
 import SocialLinks from "./SocialLinks.astro";
-import SearchBox from "./SearchBox.astro"
+import SearchBox from "./SearchBox.astro";
 
 // Navigation Component
 const navItems = [
@@ -85,7 +85,10 @@ const navItems = [
 ];
 ---
 
-<nav class="max-w-[1280px] sticky top-1 bg-white  mx-auto mt-4 px-6 py-4 z-50 capitalize">
+<nav
+  id="navbar"
+  class="max-w-[1280px] sticky top-1 bg-white rounded-md mx-auto mt-4 px-6 py-4 z-50 capitalize"
+>
   <div class="flex justify-between items-center relative">
     <!-- Logo -->
     <img
@@ -221,7 +224,7 @@ const navItems = [
           </li>
         </ul>
       </div>
-    <SocialLinks />
+      <SocialLinks />
     </div>
   </div>
 </nav>
